@@ -1,5 +1,6 @@
 import {  v4 as uuidv4 } from "uuid";
 import weatherModel from "./models/weather";
+import { getWDByCityService } from "./weatherService";
 
 
 const axios = require("axios");
@@ -26,9 +27,8 @@ export const addWeatherDetails = async (ctx: any) => {
 export const getWeatherDetailsByCity = async (ctx: any) => {
     try {
         const city=ctx.request.params.city
-        const data1=await weatherModel.find({cityName:city})
-        console.log(data1)
-        ctx.body = data1
+        const data=await getWDByCityService(city)
+        ctx.body = data
     }
     catch (err) {
         ctx.body = "Not Found"
