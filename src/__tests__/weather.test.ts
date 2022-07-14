@@ -15,4 +15,9 @@ describe('Weather data', () => {
 
         expect(res.status).toBe(200)
     })
+    it("unit testing on getting data", async() => {
+        const res = await getWDByCityService('New Delhi')
+
+        expect(res).toBe(data)
+    })
 })
